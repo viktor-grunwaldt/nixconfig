@@ -1,5 +1,4 @@
 { lib
-#, config
 , pkgs
 , ...
 }:
@@ -12,8 +11,8 @@ let
     external = ./cat.svg;
     default = ./aleksey-lopatin-manga-FHD.png;
   };
-  # modifier = config.wayland.windowManager.sway.config.modifier;
 in
+# modifier = config.wayland.windowManager.sway.config.modifier;
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -553,9 +552,9 @@ in
         eDP-1.bg = "${wallpaper.default} fill";
       };
       assigns = {
-        "workspace 1" = [{ app_id = "firefox"; }];
-        "workspace 4" = [{ class = "vesktop"; }];
-        "workspace 5" = [{ app_id = "org.keepassxc.KeePassXC"; }];
+        "workspace 1" = [ { app_id = "firefox"; } ];
+        "workspace 4" = [ { class = "vesktop"; } ];
+        "workspace 5" = [ { app_id = "org.keepassxc.KeePassXC"; } ];
       };
       window.titlebar = false;
       bars = [ ];

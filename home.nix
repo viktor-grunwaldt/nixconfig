@@ -585,6 +585,7 @@ in
           "Shift+Print" = "exec ${sway-contrib.grimshot}/bin/grimshot copy area";
           # programs stuff
           "${modifier}+f" = "exec ${firefox}/bin/firefox";
+          "${modifier}+t" = "exec ${xfce.thunar}/bin/thunar";
           "${modifier}+Shift+f" = "fullscreen";
           # exit stuff
           "${modifier}+Shift+e" = "exec ${wlogout}/bin/wlogout";

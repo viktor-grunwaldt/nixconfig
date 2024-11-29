@@ -56,12 +56,14 @@ in
     transmission_4-gtk
     thunderbird
     swayimg
+    pavucontrol
 
     tokei
     fastfetch
     fd
     ripgrep
     python313Full
+    unzip
     # direnv
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

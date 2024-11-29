@@ -144,10 +144,6 @@ in
       enable = true;
       extraConfig = zathurarc;
     };
-    nnn = {
-      enable = true;
-      package = pkgs.nnn.override ({ withNerdIcons = true; });
-    };
     yazi = {
       enable = true;
       enableFishIntegration = true;

@@ -1,6 +1,7 @@
-{ lib
-, pkgs
-, ...
+{
+  lib,
+  pkgs,
+  ...
 }:
 
 let
@@ -614,12 +615,37 @@ in
     platformTheme.name = "kvantum";
   };
 
-  # Copy over my fish functions that aren't managed by Nix
+  # xdg.configFile =
+  #   with builtins;
+  #   foldl' (acc: path: acc // { "fish/functions/${baseNameOf path}".text = (readFile path); }) { } (
+  #     with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions)
+  #   );
+  # xdg.configFile."vesktop-flags.conf".source = "asdf";
+
   xdg.configFile =
+    # Copy over my fish functions that aren't managed by Nix
     with builtins;
-    foldl' (acc: path: acc // { "fish/functions/${baseNameOf path}".text = (readFile path); }) { } (
-      with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions)
-    );
+    foldl' (
+      acc: path:
+      acc
+      // {
+        "fish/functions/${baseNameOf path}".text = readFile path;
+      }
+    ) { } (with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions))
+    # Add VS Code electron flags
+    // {
+      "code-flags.conf".text = ''
+        --enable-features=WaylandWindowDecorations
+        --ozone-platform-hint=auto
+      '';
+    }
+    # Add Vesktop electron flags (Discord client)
+    // {
+      "code-flags.conf".text = ''
+        --enable-features=WaylandWindowDecorations
+        --ozone-platform-hint=auto
+      '';
+    };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

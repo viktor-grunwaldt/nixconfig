@@ -2,17 +2,26 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-   "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-   ./disko.nix
-    ];
-     # ./swiv.nix # todo: figure out how to include it
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+    ./disko.nix
+  ];
+  # ./swiv.nix # todo: figure out how to include it
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
   # Use the systemd-boot EFI boot loader.
@@ -39,8 +48,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -86,12 +94,14 @@
       });
     '';
   };
-  security.pam.loginLimits = [{
-    domain = "@users";
-    item = "rtprio";
-    type = "-";
-    value = 1;
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      item = "rtprio";
+      type = "-";
+      value = 1;
+    }
+  ];
   systemd = {
     # start gnome authentication agent for thunar
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -101,8 +111,7 @@
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -146,16 +155,18 @@
       "lp" # bluetooth?
       # "docker" # eqv to root, read more about rootless docker
     ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ 
-    burpsuite
-    dconf
-     ];
+    packages = with pkgs; [
+      burpsuite
+      dconf
+    ];
     initialHashedPassword = "$y$j9T$AKGO/Q.MSASQc5jXZjKQ31$3NEhUjQ.Q/GGohZFSkKwDjdc.Y.ZEAF.q/LypsvAma/";
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ ntfs3g polkit_gnome 
+  environment.systemPackages = with pkgs; [
+    ntfs3g
+    polkit_gnome
   ];
 
   # environment.binsh = ''
@@ -169,7 +180,9 @@
   # laptop brightness controll, see https://nixos.wiki/wiki/Backlight
   programs.light.enable = true;
   # imperative warning! I've created keys with `ssh-keygen`
-  programs.ssh = { startAgent = true; };
+  programs.ssh = {
+    startAgent = true;
+  };
   # Launch fish unless parent is already fish
   programs.bash = {
     interactiveShellInit = ''
@@ -228,7 +241,9 @@
   # Thermald proactively prevents overheating on Intel CPUs and works well with other tools.
   services.thermald.enable = true;
   # tlp is used for saving laptop battery power
-  services.tlp = { enable = true; };
+  services.tlp = {
+    enable = true;
+  };
 
   # wheeee FUCK M$
   # virtualisation.docker.enable = true;
@@ -276,4 +291,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-

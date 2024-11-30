@@ -13,7 +13,6 @@ let
     default = ./aleksey-lopatin-manga-FHD.png;
   };
 in
-# modifier = config.wayland.windowManager.sway.config.modifier;
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -30,7 +29,6 @@ in
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   # Allow unfree for vscode ( in flake )
-  # nixpkgs.config.allowUnfreePredicate = _: true;
   # Allow unfree from commandline
   nixpkgs.config = {
     allowUnfreePredicate = _: true;
@@ -60,12 +58,10 @@ in
     pavucontrol
 
     tokei
-    fastfetch
     fd
     ripgrep
     python313Full
     unzip
-    # direnv
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -87,8 +83,6 @@ in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-
-    # "arduino_nano_pinout.png".source = ./arduino_nano_pinout.png;
 
     # ".ssh/allowed_signers".text = "* ${builtins.readFile "/home/vi/.ssh/id_ed25519.pub}"}";
 
@@ -148,6 +142,9 @@ in
     yazi = {
       enable = true;
       enableFishIntegration = true;
+    };
+    fastfetch = {
+      enable = true;
     };
     waybar = {
       enable = true;
@@ -307,7 +304,6 @@ in
         # OSD / OSC settings
         osd-level = 1;
         osd-duration = 2000;
-        # osd-status-msg = "${time-pos} / ${duration}${?percent-pos:　(${percent-pos}%)}${?frame-drop-count:${!frame-drop-count==0:　Dropped: ${frame-drop-count}}}\n${?chapter:Chapter: ${chapter}}";
         osd-status-msg = "$\\{time-pos} / $\\{duration}$\\{?percent-pos:　($\\{percent-pos}%)}$\\{?frame-drop-count:$\\{!frame-drop-count==0:　Dropped: $\\{frame-drop-count}}}\\n$\\{?chapter:Chapter: $\\{chapter}}";
 
         osd-font = "Hack";
@@ -444,12 +440,6 @@ in
         init.defaultBranch = "master";
       };
     };
-    # starship = {
-    #   enable = true;
-    #   settings = {
-    #     add_newline = false;
-    #   };
-    # };
     fish = {
       enable = true;
       catppuccin.enable = true;
@@ -615,13 +605,6 @@ in
     };
     platformTheme.name = "kvantum";
   };
-
-  # xdg.configFile =
-  #   with builtins;
-  #   foldl' (acc: path: acc // { "fish/functions/${baseNameOf path}".text = (readFile path); }) { } (
-  #     with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions)
-  #   );
-  # xdg.configFile."vesktop-flags.conf".source = "asdf";
 
   xdg.configFile =
     # Copy over my fish functions that aren't managed by Nix

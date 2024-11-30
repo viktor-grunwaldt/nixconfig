@@ -97,7 +97,7 @@ in
     # EDITOR = "hx";
     NIXOS_OZONE_WL = "1";
     # suggests electron apps to use the default (wayland) backend
-    ELECTRON_OZONE_PLATFORM_HINT="auto";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
   # Home Manager can also manage your environment variables through

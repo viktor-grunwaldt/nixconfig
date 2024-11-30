@@ -31,18 +31,6 @@
     # grub.enable = true;
     # grub.efiSupport = true;
     # grub.device = "nodev";
-    # # os prober detects Arch but nixos doesn't write it to /boot/grub/grub.conf
-    # # grub.useOSProber = true;
-    # grub.extraEntries = ''
-    #   menuentry "Arch fucking Linux" --class archlinux --class gnu-linux --class gnu {
-    #     load_video
-    #     search --no-floppy --fs-uuid --set=root a42a1832-2501-44ab-86ca-084e64df4230
-    #     echo 'Load Linux linux-zen ...'
-    #     linux /boot/vmlinuz-linux-zen root=UUID=a42a1832-2501-44ab-86ca-084e64df4230 rw nowatchdog nvme_load=YES loglevel=3
-    #     echo 'Loading initial ramdisk ...'
-    #     initrd /boot/initramfs-linux-zen.img
-    #   }
-    # '';
   };
 
   networking.hostName = "nixos"; # Define your hostname.

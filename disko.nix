@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/nvme0n1/1";
+        device = "/dev/nvme0n1";
         type = "disk";
         content = {
           type = "gpt";
@@ -33,19 +33,15 @@
                   };
                   # Subvolume name is the same as the mountpoint
                   "/home" = {
-                    # mountOptions = [ "compress=zstd" ];
+                    mountOptions = [ "compress=zstd" ];
                     mountpoint = "/home";
                   };
-                  # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                  "/home/user" = { };
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
                 };
-
-                mountpoint = "/partition-root";
               };
             };
           };

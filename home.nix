@@ -96,6 +96,8 @@ in
   home.sessionVariables = {
     # EDITOR = "hx";
     NIXOS_OZONE_WL = "1";
+    # suggests electron apps to use the default (wayland) backend
+    ELECTRON_OZONE_PLATFORM_HINT="auto";
   };
 
   # Home Manager can also manage your environment variables through
@@ -617,17 +619,19 @@ in
       }
     ) { } (with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions))
     # Add VS Code electron flags
-    // {
-      "code-flags.conf".text = ''
-        --enable-features=WaylandWindowDecorations
-        --ozone-platform-hint=auto
-      '';
-    }
+    # EDIT: prefer to use env variable ELECTRON_OZONE_PLATFORM_HINT
+    # // {
+    #   "code-flags.conf".text = ''
+    #     --enable-features=WaylandWindowDecorations
+    #     --ozone-platform-hint=auto
+    #   '';
+    # }
     # Add Vesktop electron flags (Discord client)
     // {
-      "code-flags.conf".text = ''
-        --enable-features=WaylandWindowDecorations
-        --ozone-platform-hint=auto
+      # electron bug: https://issues.chromium.org/issues/331796411#comment18
+      # try to remove workaround when electron 34 is shipped
+      "vesktop-flags.conf".text = ''
+        --disable-gpu-memory-buffer-video-frames
       '';
     };
 

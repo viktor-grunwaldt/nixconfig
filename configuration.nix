@@ -63,6 +63,13 @@
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
+  # https://nixos.wiki/wiki/Btrfs#Scrubbing
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = [ "/" ];
+  };
+
   # Enable polkit for sway
   security.polkit = {
     enable = true;

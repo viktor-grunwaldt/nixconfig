@@ -16,9 +16,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-programs-sqlite ={
+    flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -45,8 +49,9 @@
           }
           catppuccin.nixosModules.catppuccin
           inputs.flake-programs-sqlite.nixosModules.programs-sqlite
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          # make home-manager as a module of nixos so that home-manager configuration
+          # will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -56,8 +61,6 @@
               ./home.nix
               catppuccin.homeManagerModules.catppuccin
             ];
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
         ];
       };

@@ -7,6 +7,8 @@ function ext
                 tar xf $argv --one-top-level
             case '*.tar.gz'
                 tar xzf $argv --one-top-level
+            case '*.tar.zst'
+                tar --zstd xvf $argv --one-top-level
             case '*.bz2'
                 bunzip2 $argv
             case '*.rar'
@@ -27,6 +29,8 @@ function ext
                 7z x $argv
             case '*.xz'
                 xz -d $argv
+            case '*.zst'
+                unzstd $argv
             case '*'
                 echo "'$argv' is not a valid file"
         end

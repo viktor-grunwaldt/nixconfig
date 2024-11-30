@@ -156,7 +156,6 @@
       # "docker" # eqv to root, read more about rootless docker
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      burpsuite
       dconf
     ];
     initialHashedPassword = "$y$j9T$AKGO/Q.MSASQc5jXZjKQ31$3NEhUjQ.Q/GGohZFSkKwDjdc.Y.ZEAF.q/LypsvAma/";

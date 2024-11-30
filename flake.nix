@@ -16,6 +16,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-programs-sqlite ={
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -40,7 +44,7 @@
             _module.args.disks = [ "/dev/nvme0n1" ];
           }
           catppuccin.nixosModules.catppuccin
-
+          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager

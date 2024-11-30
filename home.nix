@@ -507,7 +507,7 @@ in
         x = "sxiv -ft *";
         py = "python";
         pytohn = "python";
-        nix-rebuild = "sudo nixos-rebuild --flake ~/.config/home-manager#default --show-trace --print-build-logs --verbose switch";
+        nix-rebuild = "sudo nixos-rebuild --flake ~/.config/nixconfig#default --show-trace --print-build-logs --verbose switch";
       };
     };
   };

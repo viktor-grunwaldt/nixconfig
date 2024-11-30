@@ -12,6 +12,14 @@ let
     external = ./cat.svg;
     default = ./aleksey-lopatin-manga-FHD.png;
   };
+  # strips end-of-line "//" comments from multiline strings
+  jsonFromJsonc =
+    s:
+    lib.pipe s [
+      (builtins.split "\/\/[^\"\n]*\n")
+      (builtins.filter builtins.isString)
+      (builtins.concatStringsSep "")
+    ];
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -147,6 +155,7 @@ in
     };
     fastfetch = {
       enable = true;
+      settings = builtins.fromJSON (jsonFromJsonc (builtins.readFile ./fastfetch/config.jsonc));
     };
     waybar = {
       enable = true;

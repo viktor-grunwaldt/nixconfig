@@ -76,11 +76,11 @@ in
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # (pkgs.nerd-fonts.override { fonts = [ "Hack" ]; })
-    # 
+    #
     # # XXX: Since 2024-11-09 this is no longer the way.The `nerdfonts` package has
     # # been split up into `nerd-fonts.<font>` packages
     # https://github.com/NixOS/nixpkgs/commit/de4dbc58fdeb84694d47d6c3f7b9f04a57cc4231
-    # 
+    #
     # # I'll try to fix it by 1. referencting relevant font package and 2. forcing font
     # # cache rebuild through `fc-cache -rv`
     nerd-fonts.hack
@@ -383,7 +383,7 @@ in
       catppuccin.enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
-        nil
+        nixd
         # nixfmt is in the process of being adopted by the NixOS org
         # see https://github.com/NixOS/nixfmt/issues/153
         nixfmt-rfc-style
@@ -421,6 +421,7 @@ in
           {
             name = "nix";
             formatter.command = "nixfmt";
+            language-servers = [ "nixd" ];
           }
           {
             name = "ocaml";
@@ -433,9 +434,14 @@ in
             };
           }
         ];
-        language-server.pyright = {
-          command = "pyright-langserver";
-          args = [ "--stdio" ];
+        language-server = {
+          pyright = {
+            command = "pyright-langserver";
+            args = [ "--stdio" ];
+          };
+          nixd = {
+            command = "nixd";
+          };
         };
       };
     };

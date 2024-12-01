@@ -75,7 +75,15 @@ in
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
+    # (pkgs.nerd-fonts.override { fonts = [ "Hack" ]; })
+    # 
+    # # XXX: Since 2024-11-09 this is no longer the way.The `nerdfonts` package has
+    # # been split up into `nerd-fonts.<font>` packages
+    # https://github.com/NixOS/nixpkgs/commit/de4dbc58fdeb84694d47d6c3f7b9f04a57cc4231
+    # 
+    # # I'll try to fix it by 1. referencting relevant font package and 2. forcing font
+    # # cache rebuild through `fc-cache -rv`
+    nerd-fonts.hack
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -460,6 +468,7 @@ in
       functions = {
         fish_greeting = "${pkgs.fortune-kind}/bin/fortune";
         mvn-init = "set name $argv; mvn archetype:generate -DgroupId=pl.wroc.uni.$name -DartifactId=$name -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false";
+        backup-file = "cp -i $argv $argv.bak";
       };
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs

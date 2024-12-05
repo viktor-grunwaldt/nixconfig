@@ -83,6 +83,7 @@ in
     #
     # # I'll try to fix it by 1. referencting relevant font package and 2. forcing font
     # # cache rebuild through `fc-cache -rv`
+    # # UPDATE: cache rebuild wasn't necessary
     nerd-fonts.hack
 
     # # You can also create simple shell scripts directly inside your
@@ -416,7 +417,7 @@ in
           {
             name = "python";
             auto-format = true;
-            language-servers = [ "pyright" ];
+            language-servers = [ "pyright" "ruff" ];
           }
           {
             name = "nix";
@@ -438,6 +439,11 @@ in
           pyright = {
             command = "pyright-langserver";
             args = [ "--stdio" ];
+            config.python.analysis.typeCheckingMode = "basic";
+          };
+          ruff = {
+            command = "ruff";
+            args = ["server"];
           };
           nixd = {
             command = "nixd";

@@ -108,6 +108,11 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    # fancy GHCI (haskell REPL) prompt
+    ".ghci".text = ''
+      :set prompt "\ESC[1;34m%s\n\ESC[0;35mλ> \ESC[m"
+    '';
   };
 
   home.sessionVariables = {
@@ -285,6 +290,9 @@ in
       enable = true;
       nix-direnv.enable = true;
       # enableFishIntegration = true; # enabled by default???
+      config = {
+        global.warn_timeout = "0";
+      };
     };
     mpv = {
       enable = true;

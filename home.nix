@@ -63,6 +63,7 @@ in
     transmission_4-gtk
     thunderbird
     swayimg
+    imv
     pavucontrol
 
     tokei

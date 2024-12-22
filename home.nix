@@ -298,6 +298,10 @@ in
     };
     mpv = {
       enable = true;
+      scripts = with pkgs; [
+        # mpvScripts.builtins.autoload
+        mpvScripts.autoload
+      ];
       # Use the contents of your mpv.conf file
       config = {
         geometry = "50%:50%";
@@ -306,7 +310,7 @@ in
         autofit-larger = "80%x80%";
 
         # save-position-on-quit
-        no-border = true;
+        border = false;
         msg-module = true;
         msg-color = true;
         term-osd-bar = true;
@@ -364,7 +368,9 @@ in
         # };
 
         # Subtitle settings
-        sub-ass-vsfilter-blur-compat = true;
+
+        # sub-ass-vsfilter-blur-compat = true; # replaced by use-video-data
+        sub-ass-use-video-data="all";
         sub-fix-timing = true;
         sub-auto = "fuzzy";
         sub-font = "Andika New Basic Bold";

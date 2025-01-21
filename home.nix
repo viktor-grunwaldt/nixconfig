@@ -144,7 +144,6 @@ in
 
   programs = {
     alacritty = {
-      catppuccin.enable = true;
       enable = true;
       settings = {
         font = {
@@ -175,7 +174,6 @@ in
     };
     waybar = {
       enable = true;
-      # catppuccin.enable = true;
       systemd.enable = true;
       style = waybarCSS;
       settings = [
@@ -275,18 +273,15 @@ in
 
     tmux = {
       enable = true;
-      catppuccin.enable = true;
     };
     eza = {
       enable = true;
     };
     btop = {
       enable = true;
-      catppuccin.enable = true;
     };
     bat = {
       enable = true;
-      catppuccin.enable = true;
     };
     direnv = {
       enable = true;
@@ -370,7 +365,7 @@ in
         # Subtitle settings
 
         # sub-ass-vsfilter-blur-compat = true; # replaced by use-video-data
-        sub-ass-use-video-data="all";
+        sub-ass-use-video-data = "all";
         sub-fix-timing = true;
         sub-auto = "fuzzy";
         sub-font = "Andika New Basic Bold";
@@ -397,7 +392,6 @@ in
     # Don't forget to fetch grammars!
     helix = {
       enable = true;
-      catppuccin.enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
         nixd
@@ -433,7 +427,10 @@ in
           {
             name = "python";
             auto-format = true;
-            language-servers = [ "pyright" "ruff" ];
+            language-servers = [
+              "pyright"
+              "ruff"
+            ];
           }
           {
             name = "nix";
@@ -476,7 +473,7 @@ in
       userName = "Viktor Grunwaldt";
       userEmail = "v.gruenwaldt@protonmail.com";
       extraConfig = {
-        # Sign all commits using ssh key 
+        # Sign all commits using ssh key
         # for now, gpg is not set up, this will be uncommented once it works
         # commit.gpgsign = true;
         # gpg.format = "ssh";
@@ -489,7 +486,6 @@ in
     };
     fish = {
       enable = true;
-      catppuccin.enable = true;
       # interactiveShellInit = ''
       #   set fish_greeting # Disable greeting
       # '';
@@ -552,14 +548,12 @@ in
   services = {
     mako = {
       enable = true;
-      catppuccin.enable = true;
       defaultTimeout = 3000;
     };
   };
 
   wayland.windowManager.sway = {
     enable = true;
-    catppuccin.enable = true;
     wrapperFeatures.gtk = true;
     config = rec {
       modifier = "Mod4";
@@ -630,26 +624,42 @@ in
         };
     };
   };
+  /*
+    evaluation warning: vi profile: `gtk.catppuccin.enable` and `gtk.catppuccin.gnomeShellTheme` are deprecated and will be removed in a future release.
 
+                    The upstream port has been archived and support will no longer be provided.
+                    Please see https://github.com/catppuccin/gtk/issues/262
+  */
   # Theme
-  catppuccin.flavor = "mocha";
-  catppuccin.pointerCursor = {
-    accent = "light";
-    enable = true;
-  };
-  gtk = {
-    enable = true;
-    catppuccin = {
+  catppuccin = {
+    flavor = "mocha";
+    cursors = {
+      accent = "light";
+      enable = true;
+    };
+    alacritty.enable = true;
+    bat.enable = true;
+    btop.enable = true;
+    fish.enable = true;
+    helix.enable = true;
+    tmux.enable = true;
+
+    sway.enable = true;
+    mako.enable = true;
+    kvantum.enable = true;
+    kvantum.apply = true;
+    gtk = {
       enable = true;
       icon.enable = true;
     };
+  };
+  gtk = {
+    enable = true;
   };
   qt = {
     enable = true;
     style = {
       name = "kvantum";
-      catppuccin.enable = true;
-      catppuccin.apply = true;
     };
     platformTheme.name = "kvantum";
   };

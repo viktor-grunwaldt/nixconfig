@@ -491,7 +491,7 @@ in
       #   set fish_greeting # Disable greeting
       # '';
       functions = {
-        fish_greeting = "${pkgs.fortune-kind}/bin/fortune";
+        fish_greeting = "${pkgs.fortune}/bin/fortune";
         mvn-init = "set name $argv; mvn archetype:generate -DgroupId=pl.wroc.uni.$name -DartifactId=$name -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false";
         backup-file = "cp -i $argv $argv.bak";
       };

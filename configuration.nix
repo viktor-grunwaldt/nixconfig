@@ -261,6 +261,9 @@
     enable = true;
     setSocketVariable = true;
   };
+  # Sieci komputerowe:
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "vi" ];
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
   # virtualisation.libvirtd = {

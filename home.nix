@@ -124,6 +124,7 @@ in
     NIXOS_OZONE_WL = "1";
     # suggests electron apps to use the default (wayland) backend
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
   };
 
   # Home Manager can also manage your environment variables through

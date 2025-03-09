@@ -5,6 +5,7 @@
 }:
 
 let
+  username = "vi";
   inputConf = builtins.readFile ./mpv/input.conf;
   waybarCSS = builtins.readFile ./waybar/style.css;
   zathurarc = builtins.readFile ./zathura/zathurarc;
@@ -24,8 +25,8 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "vi";
-  home.homeDirectory = "/home/vi";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -457,7 +458,7 @@ in
           };
           ruff = {
             command = "ruff";
-            args = ["server"];
+            args = [ "server" ];
           };
           nixd = {
             command = "nixd";

@@ -582,8 +582,14 @@ in
         };
       };
       output = {
-        DP-1.bg = "${wallpaper.external} fill";
-        eDP-1.bg = "${wallpaper.default} fill";
+        DP-1 = {
+          bg = "${wallpaper.external} fill";
+          position = "1920,0";
+        };
+        eDP-1 = {
+          bg = "${wallpaper.default} fill";
+          position = "0,0";
+        };
       };
       assigns = {
         "workspace 1" = [ { app_id = "firefox"; } ];

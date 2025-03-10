@@ -111,6 +111,13 @@
         TimeoutStopSec = 10;
       };
     };
+    # https://github.com/NixOS/nixpkgs/pull/96766
+    # Instead of cleaning on boot, by default it cleans up files >10d
+    # So, I've set it to 3d
+    tmpfiles.rules = [
+      "q /tmp 1777 root root 3d"
+      "q /var/tmp 1777 root root 30d"
+    ];
   };
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -161,23 +168,6 @@
     ntfs3g
     polkit_gnome
   ];
-  # https://github.com/NixOS/nixpkgs/pull/96766
-  # Instead of cleaning on boot, by default it cleans up files >10d
-  # So, I've set it to 3d
-  environment.etc."tmpfiles.d/tmp.conf".text = ''
-    #  This file is part of systemd.
-    #
-    #  systemd is free software; you can redistribute it and/or modify it
-    #  under the terms of the GNU Lesser General Public License as published by
-    #  the Free Software Foundation; either version 2.1 of the License, or
-    #  (at your option) any later version.
-
-    # See tmpfiles.d(5) for details
-
-    # Clear tmp directories separately, to make them easier to override
-    q /tmp 1777 root root 3d
-    q /var/tmp 1777 root root 30d
-  '';
   # environment.binsh = ''
   #   ${pkgs.dash}/bin/dash
   # '';

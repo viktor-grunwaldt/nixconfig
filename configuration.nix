@@ -122,7 +122,7 @@
   # Enable support for bluetooth.
   hardware.bluetooth.enable = true;
   # Powers up the default Bluetooth controller on boot.
-  # hardware.bluetooth.powerOnBoot = true; 
+  # hardware.bluetooth.powerOnBoot = true;
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
@@ -222,7 +222,7 @@
 
   # List services that you want to enable:
 
-  # Enable the gnome-keyring secrets vault. 
+  # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
@@ -240,7 +240,7 @@
     };
   };
 
-  # If you are using a wlroots-based compositor, like sway, and want to be able to share your 
+  # If you are using a wlroots-based compositor, like sway, and want to be able to share your
   # screen, you might want to activate this option:
   xdg.portal.wlr.enable = true;
 

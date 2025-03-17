@@ -247,13 +247,14 @@
 
   # wheeee FUCK M$
   # virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
   # Sieci komputerowe:
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "vi" ];
+  boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
   # virtualisation.libvirtd = {

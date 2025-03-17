@@ -450,6 +450,26 @@ in
               ];
             };
           }
+          {
+            name = "c";
+            formatter = {
+              command = "clang-format";
+            };
+            persistent-diagnostic-sources = [
+              "clangd"
+              "clang-tidy"
+            ];
+          }
+          {
+            name = "cpp";
+            formatter = {
+              command = "clang-format";
+            };
+            persistent-diagnostic-sources = [
+              "clangd"
+              "clang-tidy"
+            ];
+          }
         ];
         language-server = {
           pyright = {
@@ -463,6 +483,10 @@ in
           };
           nixd = {
             command = "nixd";
+          };
+          clangd = {
+            command = "clangd";
+            args = [ "--clang-tidy" ];
           };
         };
       };

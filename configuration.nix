@@ -167,6 +167,7 @@
   environment.systemPackages = with pkgs; [
     ntfs3g
     polkit_gnome
+    man-pages
   ];
   # environment.binsh = ''
   #   ${pkgs.dash}/bin/dash

@@ -258,13 +258,12 @@
   boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
-  # virtualisation.libvirtd = {
-  #   virtualisation = { # doesn't work?
-  #     memorySize = 4096;
-  #     cores = 4;
-  #   };
-  # };
-
+  virtualisation.vmVariant = {
+    virtualisation = { # doesn't work?
+      memorySize = 4096;
+      cores = 4;
+    };
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -285,6 +285,9 @@ in
     };
     bat = {
       enable = true;
+      config = {
+        plain = true;
+      };
     };
     direnv = {
       enable = true;
@@ -434,6 +437,17 @@ in
               "pyright"
               "ruff"
             ];
+          }
+          {
+            name = "markdown";
+            soft-wrap.enable = true;
+            auto-pairs = {
+              "\"" = "\"";
+              "'" = "'";
+              "(" = ")";
+              "[" = "]";
+              "{" = "}";
+            };
           }
           {
             name = "nix";

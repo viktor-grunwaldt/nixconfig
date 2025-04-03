@@ -119,6 +119,14 @@
       "q /var/tmp 1777 root root 30d"
     ];
   };
+  # zramSwap = {
+  #   enable = true;
+  #   memoryPercent = 25;
+  # };
+  #  swapDevices = [ {
+  #   device = "/var/lib/swapfile";
+  #   size = 2*1024;
+  # } ];
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -202,7 +210,7 @@
     ];
   };
 
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
   programs.fish.enable = true;
   # programs.sway.enable = true;
 

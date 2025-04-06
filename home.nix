@@ -583,18 +583,16 @@ in
         tree = "eza --tree";
         du-sort = "du -xhla --max-depth 1 | sort -rh";
         z = "zathura --fork *.pdf";
-        x = "sxiv -ft *";
         py = "python";
         pytohn = "python";
         nix-rebuild = "sudo nixos-rebuild --flake ~/.config/nixconfig#default --show-trace --print-build-logs --verbose switch";
       };
     };
   };
-  services = {
-    mako = {
-      enable = true;
-      defaultTimeout = 3000;
-    };
+
+  services.mako = {
+    enable = true;
+    defaultTimeout = 3000;
   };
 
   wayland.windowManager.sway = {

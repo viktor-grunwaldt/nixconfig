@@ -21,6 +21,8 @@ let
       (builtins.filter builtins.isString)
       (builtins.concatStringsSep "")
     ];
+  my-projector-script-file = builtins.readFile ./projector-toggle.sh;
+  my-projector-script = pkgs.writeShellScriptBin "projector-toggle" my-projector-script-file;
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -77,8 +79,9 @@ in
     file
     xarchiver
     jq
-    (writeShellScriptBin "projector-toggle" (builtins.readFile ./projector-toggle.sh))
     renode
+
+    my-projector-script
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

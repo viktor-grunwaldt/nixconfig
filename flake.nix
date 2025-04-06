@@ -51,10 +51,12 @@
           {
             _module.args.disks = [ "/dev/nvme0n1" ];
           }
+
           catppuccin.nixosModules.catppuccin
           inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.t480-fprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+
           # make home-manager as a module of nixos so that home-manager configuration
           # will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
@@ -64,11 +66,10 @@
 
             home-manager.users.vi.imports = [
               ./home.nix
-              catppuccin.homeManagerModules.catppuccin
+              catppuccin.homeModules.catppuccin
             ];
           }
         ];
       };
-
     };
 }

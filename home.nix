@@ -39,10 +39,11 @@ in
 
   # Allow unfree for vscode ( in flake )
   # Allow unfree from commandline
-  nixpkgs.config = {
-    allowUnfreePredicate = _: true;
-    allowUnfree = true;
-  };
+  # nixpkgs.config = {
+  #   allowUnfreePredicate = _: true;
+  #   allowUnfree = true;
+  # };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [

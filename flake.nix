@@ -24,6 +24,10 @@
       url = "github:NixOS/nixos-hardware/master";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    t480-fprint-sensor = {
+      url = "github:viktor-grunwaldt/t480-fingerprint-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -50,6 +54,7 @@
           catppuccin.nixosModules.catppuccin
           inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          inputs.t480-fprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           # make home-manager as a module of nixos so that home-manager configuration
           # will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager

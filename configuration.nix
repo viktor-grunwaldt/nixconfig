@@ -274,7 +274,7 @@
         name = "vi";
         ensureDBOwnership = true;
       }
-     ];
+    ];
     authentication = pkgs.lib.mkOverride 10 ''
       #type database  DBuser  auth-method
       local all       all     trust
@@ -283,10 +283,16 @@
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
   virtualisation.vmVariant = {
-    virtualisation = { # doesn't work?
+    virtualisation = {
       memorySize = 4096;
       cores = 4;
     };
+  };
+  # see: https://github.com/viktor-grunwaldt/t480-fingerprint-nixos/blob/main/SETUP.md
+  services."06cb-009a-fingerprint-sensor" = {
+    enable = true;
+    backend = "libfprint-tod";
+    calib-data-file = ./fprint/calib-data.bin;
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

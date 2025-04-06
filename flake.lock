@@ -134,7 +134,28 @@
         "flake-programs-sqlite": "flake-programs-sqlite",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "t480-fprint-sensor": "t480-fprint-sensor"
+      }
+    },
+    "t480-fprint-sensor": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743969003,
+        "narHash": "sha256-owOfkYRwZOcFkmeGJjdBpUXh/InLyii/v49NwjsVdJs=",
+        "owner": "viktor-grunwaldt",
+        "repo": "t480-fingerprint-nixos",
+        "rev": "08141fa74ea03d4a7cfe356c7f74b9a16e1aa0a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viktor-grunwaldt",
+        "repo": "t480-fingerprint-nixos",
+        "type": "github"
       }
     },
     "utils": {

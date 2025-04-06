@@ -23,6 +23,16 @@ let
     ];
   my-projector-script-file = builtins.readFile ./projector-toggle.sh;
   my-projector-script = pkgs.writeShellScriptBin "projector-toggle" my-projector-script-file;
+  fish-functions =
+    with builtins;
+    with lib.fileset;
+    foldl' (
+      acc: path:
+      acc
+      // {
+        "fish/functions/${baseNameOf path}".text = readFile path;
+      }
+    ) { } (toList (fileFilter (file: file.hasExt "fish") ./configs/fish/functions));
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -610,14 +620,7 @@ in
 
   xdg.configFile =
     # Copy over my fish functions that aren't managed by Nix
-    with builtins;
-    foldl' (
-      acc: path:
-      acc
-      // {
-        "fish/functions/${baseNameOf path}".text = readFile path;
-      }
-    ) { } (with lib.fileset; toList (fileFilter (file: file.hasExt "fish") ./fish/functions))
+    fish-functions
     # Add VS Code electron flags
     # EDIT: prefer to use env variable ELECTRON_OZONE_PLATFORM_HINT
     # // {

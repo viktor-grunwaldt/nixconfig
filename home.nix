@@ -6,16 +6,16 @@
 
 let
   username = "vi";
-  inputConf = builtins.readFile ./mpv/input.conf;
-  waybarCSS = builtins.readFile ./waybar/style.css;
-  zathurarc = builtins.readFile ./zathura/zathurarc;
+  inputConf = builtins.readFile ./dotfiles/mpv/input.conf;
+  waybarCSS = builtins.readFile ./dotfiles/waybar/style.css;
+  zathurarc = builtins.readFile ./dotfiles/zathura/zathurarc;
   wallpaper = {
-    external = ./cat.svg;
-    default = ./aleksey-lopatin-manga-FHD.png;
+    external = ./assets/cat.svg;
+    default = ./assets/aleksey-lopatin-manga-FHD.png;
   };
   fastfetchConf =
     with builtins;
-    lib.pipe ./fastfetch/config.jsonc [
+    lib.pipe ./dotfiles/fastfetch/config.jsonc [
       readFile
       # strips end-of-line "//" comments from multiline strings
       (split "\/\/[^\"\n]*\n")
@@ -23,7 +23,7 @@ let
       (concatStringsSep "")
       fromJSON
     ];
-  my-projector-script-file = builtins.readFile ./projector-toggle.sh;
+  my-projector-script-file = builtins.readFile ./assets/projector-toggle.sh;
   my-projector-script = pkgs.writeShellScriptBin "projector-toggle" my-projector-script-file;
   fish-functions =
     with builtins;
@@ -34,7 +34,7 @@ let
       // {
         "fish/functions/${baseNameOf path}".text = readFile path;
       }
-    ) { } (toList (fileFilter (file: file.hasExt "fish") ./configs/fish/functions));
+    ) { } (toList (fileFilter (file: file.hasExt "fish") ./dotfiles/fish/functions));
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -415,7 +415,7 @@ in
       extraInput = inputConf;
     };
     # Don't forget to fetch grammars!
-    helix = import ./configs/helix.nix pkgs;
+    helix = import ./dotfiles/helix.nix pkgs;
     vscode = {
       enable = true;
       package = pkgs.vscode.fhs;

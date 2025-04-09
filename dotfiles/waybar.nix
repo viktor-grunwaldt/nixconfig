@@ -1,7 +1,6 @@
 waybarCSS:
 {
   enable = true;
-  systemd.enable = true;
   style = waybarCSS;
   settings = [
     {

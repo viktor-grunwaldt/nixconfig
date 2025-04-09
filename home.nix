@@ -352,12 +352,10 @@ in
         "workspace 5" = [ { app_id = "org.keepassxc.KeePassXC"; } ];
       };
       window.titlebar = false;
-      bars = [ ];
+      bars = [
+        { command = "${pkgs.waybar}/bin/waybar"; }
+      ];
       startup = [
-        {
-          command = "systemctl --user restart waybar";
-          always = true;
-        }
         {
           command = "keepassxc";
         }

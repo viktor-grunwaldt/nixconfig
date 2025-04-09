@@ -430,23 +430,7 @@ in
 
   xdg.configFile =
     # Copy over my fish functions that aren't managed by Nix
-    fish-functions
-    # Add VS Code electron flags
-    # EDIT: prefer to use env variable ELECTRON_OZONE_PLATFORM_HINT
-    # // {
-    #   "code-flags.conf".text = ''
-    #     --enable-features=WaylandWindowDecorations
-    #     --ozone-platform-hint=auto
-    #   '';
-    # }
-    # Add Vesktop electron flags (Discord client)
-    // {
-      # electron bug: https://issues.chromium.org/issues/331796411#comment18
-      # try to remove workaround when electron 34 is shipped
-      "vesktop-flags.conf".text = ''
-        --disable-gpu-memory-buffer-video-frames
-      '';
-    };
+    fish-functions;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

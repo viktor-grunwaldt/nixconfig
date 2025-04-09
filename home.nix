@@ -91,7 +91,7 @@ in
     file
     xarchiver
     jq
-    renode
+    distrobox
 
     my-projector-script
     # # It is sometimes useful to fine-tune packages, for example, by applying

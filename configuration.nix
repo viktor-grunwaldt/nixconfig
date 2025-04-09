@@ -260,6 +260,11 @@
   #   enable = true;
   #   setSocketVariable = true;
   # };
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
   # Sieci komputerowe:
   virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableKvm = true;

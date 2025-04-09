@@ -293,9 +293,13 @@ in
         tree = "eza --tree";
         du-sort = "du -xhla --max-depth 1 | sort -rh";
         z = "zathura --fork *.pdf";
+        ff = "firefox";
         py = "python";
         pytohn = "python";
         nix-rebuild = "sudo nixos-rebuild --flake ~/.config/nixconfig#default --show-trace --print-build-logs --verbose switch";
+      };
+      shellAliases = {
+        mv = "mv -i";
       };
     };
   };

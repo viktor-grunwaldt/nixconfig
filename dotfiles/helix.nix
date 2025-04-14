@@ -58,6 +58,11 @@ pkgs:
         language-servers = [ "nixd" ];
       }
       {
+        name = "sql";
+        auto-format = false;
+        language-servers = [ "sqls" ];
+      }
+      {
         name = "ocaml";
         formatter = {
           command = "ocamlformat";
@@ -104,6 +109,9 @@ pkgs:
       clangd = {
         command = "clangd";
         args = [ "--clang-tidy" ];
+      };
+      sqls = {
+        command = "sqls";
       };
     };
   };

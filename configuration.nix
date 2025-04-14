@@ -175,6 +175,7 @@
     ntfs3g
     polkit_gnome
     man-pages
+    nixos-rebuild-ng
   ];
   # environment.binsh = ''
   #   ${pkgs.dash}/bin/dash

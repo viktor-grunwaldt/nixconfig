@@ -159,9 +159,8 @@
       "networkmanager"
       "video"
       "audio"
-      "dialout" # access /dev/usb
-      "plugdev" # idk, https://github.com/NixOS/nixpkgs/issues/342825 it was mentioned?
       "lp" # bluetooth?
+      "podman" # for arion/docker-compose
       # "docker" # eqv to root, read more about rootless docker
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -263,6 +262,7 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+    dockerSocket.enable = true;
   };
 
   # Sieci komputerowe:

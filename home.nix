@@ -7,7 +7,7 @@
 let
   username = "vi";
   inputConf = builtins.readFile ./dotfiles/mpv/input.conf;
-  waybarCSS = builtins.readFile ./dotfiles/waybar/style.css;
+  waybarCSS = ./dotfiles/waybar/style.css;
   zathurarc = builtins.readFile ./dotfiles/zathura/zathurarc;
   wallpaper = {
     external = ./assets/cat.svg;

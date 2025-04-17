@@ -92,6 +92,7 @@ in
     xarchiver
     jq
     distrobox
+    pstree
 
     my-projector-script
     # # It is sometimes useful to fine-tune packages, for example, by applying

@@ -15,6 +15,7 @@ pkgs:
       bufferline = "multiple";
       lsp.display-inlay-hints = true;
       cursor-shape.insert = "bar";
+      completion-timeout = 500;
     };
     keys.insert = {
       up = "no_op";
@@ -109,6 +110,7 @@ pkgs:
       clangd = {
         command = "clangd";
         args = [ "--clang-tidy" ];
+        timeout = 60;
       };
       sqls = {
         command = "sqls";

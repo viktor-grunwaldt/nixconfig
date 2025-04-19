@@ -9,7 +9,9 @@
   inputs,
   ...
 }:
-
+let
+  steam-launch = pkgs.writeShellScript "steam-launch" (builtins.readFile ./assets/gs.sh);
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -167,7 +169,33 @@
     ];
     initialHashedPassword = "$y$j9T$AKGO/Q.MSASQc5jXZjKQ31$3NEhUjQ.Q/GGohZFSkKwDjdc.Y.ZEAF.q/LypsvAma/";
   };
-
+  users.users.steam = {
+    isNormalUser = true;
+    createHome = true;
+    extraGroups = [
+      "networkmanager"
+      "video"
+      "audio"
+      "lp" # bluetooth?
+    ];
+    packages = with pkgs; [
+      mangohud
+    ];
+   };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+  services.getty.autologinUser = "steam";
+  environment = {
+    loginShellInit = ''
+      [[ "$(tty)" = "/dev/tty2" ]] && exec ${steam-launch}
+    '';
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

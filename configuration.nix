@@ -22,6 +22,7 @@ in
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
+    "pipe-operators"
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
@@ -236,7 +237,6 @@ in
       xfce.thunar-volman
     ];
   };
-
   # programs.steam.enable = true;
   programs.fish.enable = true;
   # programs.sway.enable = true;

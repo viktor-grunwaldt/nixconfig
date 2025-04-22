@@ -429,8 +429,9 @@ in
 
   xdg.configFile =
     # Copy over my fish functions that aren't managed by Nix
-    fish-functions
-    // { "tmux/tmux.conf".source = ./dotfiles/tmux/tmux.conf; };
+    fish-functions // {
+      "tmux/tmux.conf".source = ./dotfiles/tmux/tmux.conf;
+    };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

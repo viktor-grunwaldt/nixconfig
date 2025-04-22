@@ -327,6 +327,8 @@ in
     backend = "libfprint-tod";
     calib-data-file = ./fprint/calib-data.bin;
   };
+
+  services.tailscale.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

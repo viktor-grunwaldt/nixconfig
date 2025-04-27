@@ -81,6 +81,7 @@ in
     swayimg
     imv
     pwvucontrol
+    overskride
 
     tokei
     fd
@@ -183,7 +184,11 @@ in
         };
         keyboard = {
           bindings = [
-            { key = "Return"; mods = "Control|Shift"; action = "SpawnNewInstance";}
+            {
+              key = "Return";
+              mods = "Control|Shift";
+              action = "SpawnNewInstance";
+            }
           ];
         };
       };

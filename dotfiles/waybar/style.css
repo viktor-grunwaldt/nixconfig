@@ -132,6 +132,7 @@ window#waybar.firefox {
 #backlight,
 #network,
 #wireplumber,
+#bluetooth,
 #custom-media,
 #tray,
 #mode,
@@ -214,10 +215,12 @@ label:focus {
     background-color: @sky;
 }
 
+#bluetooth,
 #wireplumber {
     background-color: @teal;
 }
 
+#bluetooth.off,
 #wireplumber.muted {
     background-color: #90b1b1;
 }

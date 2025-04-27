@@ -54,12 +54,6 @@ in
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # bluetooth pairing thingy
-  services.blueman.enable = true;
-
   # thunar helpers
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images

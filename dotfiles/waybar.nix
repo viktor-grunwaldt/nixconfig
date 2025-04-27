@@ -16,6 +16,7 @@ waybarCSS:
         "tray"
         "network"
         "wireplumber"
+        "bluetooth"
         "cpu"
         "memory"
         "battery"
@@ -33,6 +34,7 @@ waybarCSS:
         "format" = " {usage}%";
         "tooltip" = false;
         "interval" = 1;
+        "on-click" = "exec alacritty -e btop";
       };
       "memory" = {
         "format" = " {}%";
@@ -74,24 +76,16 @@ waybarCSS:
       };
       "wireplumber" = {
         "format" = "{icon} {volume}%";
-        "format-bluetooth" = "{icon} {volume}% {format_source}";
-        "format-bluetooth-muted" = "󰝟 {icon} {format_source}";
         "format-muted" = "󰝟";
         "format-icons" = {
-          "headphone" = "";
-          "hands-free" = "";
-          "headset" = "󰋎";
-          "phone" = "";
-          "portable" = "";
-          "car" = "";
           "default" = [
             ""
             "󰖀"
             "󰕾"
           ];
         };
-        "on-click-right" = "pavucontrol";
-        "on-click" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "on-click-right" = "exec pwvucontrol";
+        "on-click" = "wpctl set-mute @DEFAULT_SINK@ toggle";
       };
     }
   ];

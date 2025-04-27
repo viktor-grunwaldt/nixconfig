@@ -181,6 +181,11 @@ in
           opacity = 0.95;
           title = "Alacritty";
         };
+        keyboard = {
+          bindings = [
+            { key = "Return"; mods = "Control|Shift"; action = "SpawnNewInstance";}
+          ];
+        };
       };
     };
     zathura = {

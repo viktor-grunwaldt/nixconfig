@@ -80,7 +80,7 @@ in
     thunderbird
     swayimg
     imv
-    pavucontrol
+    pwvucontrol
 
     tokei
     fd

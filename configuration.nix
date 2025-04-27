@@ -114,6 +114,10 @@ in
       "q /tmp 1777 root root 3d"
       "q /var/tmp 1777 root root 30d"
     ];
+    timers.logrotate.timerConfig = {
+      OnBootSec = "10min";
+      OnUnitActiveSec = "1d";
+    };
   };
   # zramSwap = {
   #   enable = true;
@@ -176,7 +180,7 @@ in
     packages = with pkgs; [
       mangohud
     ];
-   };
+  };
   programs.gamescope = {
     enable = true;
     capSysNice = true;

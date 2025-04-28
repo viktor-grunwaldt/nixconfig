@@ -31,16 +31,16 @@ waybarCSS:
         "on-click" = "exec alacritty -e nmtui";
       };
       "cpu" = {
-        "format" = " {usage}%";
+        "format" = " {usage:02}%";
         "tooltip" = false;
         "interval" = 1;
         "on-click" = "exec alacritty -e btop";
       };
       "memory" = {
-        "format" = " {}%";
+        "format" = " {:02}%";
       };
       "battery" = {
-        "format" = "{icon} {capacity}%";
+        "format" = "{icon} {capacity:02}%";
         "format-icons" = {
           "default" = [
             "󰂎"
@@ -75,7 +75,7 @@ waybarCSS:
         "format" = "{:%H:%M}";
       };
       "wireplumber" = {
-        "format" = "{icon} {volume}%";
+        "format" = "{icon} {volume:02}%";
         "format-muted" = "󰝟";
         "format-icons" = {
           "default" = [

@@ -248,10 +248,9 @@
   # Thermald proactively prevents overheating on Intel CPUs and works well with other tools.
   services.thermald.enable = true;
   # tlp is used for saving laptop battery power
-  services.tlp = {
-    enable = true;
-  };
-
+  services.tlp.enable = false;
+  # use cpu-autofreq instead of tlp
+  services.auto-cpufreq.enable = true;
   # wheeee FUCK M$
   # virtualisation.docker.enable = true;
   # virtualisation.docker.rootless = {

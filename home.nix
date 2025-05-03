@@ -213,6 +213,9 @@ in
     };
     btop = {
       enable = true;
+      settings = {
+        update_ms = 500;
+      };
     };
     bat = {
       enable = true;

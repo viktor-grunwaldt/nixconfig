@@ -365,6 +365,17 @@ in
         "workspace 4" = [ { class = "vesktop"; } ];
         "workspace 5" = [ { app_id = "org.keepassxc.KeePassXC"; } ];
       };
+      # manually injecting catppuccin config
+      # nixfmt: off
+      colors = {
+        focused           = {childBorder="$lavender";background= "$base";text= "$text";  indicator="$rosewater"; border="$lavender";};
+        focusedInactive   = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$rosewater"; border="$overlay0";};
+        unfocused         = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$rosewater"; border="$overlay0";};
+        urgent            = {childBorder="$peach";   background= "$base";text= "$peach"; indicator="$overlay0";  border="$peach";};
+        placeholder       = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$overlay0";  border="$overlay0";};
+        background        = "$base";
+      };
+      # nixfmt: on
       window.titlebar = false;
       bars = [
         { command = "${pkgs.waybar}/bin/waybar"; }

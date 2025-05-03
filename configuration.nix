@@ -269,20 +269,6 @@
   # virtualisation.virtualbox.host.addNetworkInterface = false;
   users.extraGroups.vboxusers.members = [ "vi" ];
   boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = [ "vi" ];
-    ensureUsers = [
-      {
-        name = "vi";
-        ensureDBOwnership = true;
-      }
-    ];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-    '';
-  };
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
   virtualisation.vmVariant = {

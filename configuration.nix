@@ -251,6 +251,8 @@
   services.tlp.enable = false;
   # use cpu-autofreq instead of tlp
   services.auto-cpufreq.enable = true;
+  # firefox is built with upower support
+  services.upower.enable = true;
   # wheeee FUCK M$
   # virtualisation.docker.enable = true;
   # virtualisation.docker.rootless = {

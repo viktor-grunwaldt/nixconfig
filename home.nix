@@ -398,6 +398,9 @@ in
           # brightness stuff
           "XF86MonBrightnessUp" = "exec ${light}/bin/light -T 1.19 ";
           "XF86MonBrightnessDown" = "exec ${light}/bin/light -T 0.84";
+          # other Fn keys
+          "XF86Bluetooth" = "exec rfkill toggle bluetooth";
+          "XF86Wlan" = "exec rfkill toggle wifi";
           # screenshot stuff
           "Print" = "exec ${sway-contrib.grimshot}/bin/grimshot copy screen";
           "Print+alt" = "exec ${sway-contrib.grimshot}/bin/grimshot save screen";

@@ -262,6 +262,7 @@ in
         fish_greeting = "${pkgs.fortune}/bin/fortune";
         mvn-init = "set name $argv; mvn archetype:generate -DgroupId=pl.wroc.uni.$name -DartifactId=$name -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false";
         backup-file = "cp -i $argv $argv.bak";
+        rust-docs = ''open "$(rustc --print sysroot)/share/doc/rust/html/index.html"'';
       };
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs

@@ -23,6 +23,7 @@
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
+  security.sudo.enable = false;
   security.sudo-rs.enable = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
@@ -172,6 +173,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    (lib.hiPrio uutils-coreutils-noprefix)
+    (lib.hiPrio uutils-findutils)
+    (lib.hiPrio uutils-diffutils)
     ntfs3g
     polkit_gnome
     man-pages

@@ -23,6 +23,7 @@
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
+  security.sudo-rs.enable = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;

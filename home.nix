@@ -35,6 +35,7 @@ let
         "fish/functions/${baseNameOf path}".text = readFile path;
       }
     ) { } (toList (fileFilter (file: file.hasExt "fish") ./dotfiles/fish/functions));
+    font-path = "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack/HackNerdFontMono-Regular.ttf";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -407,6 +408,7 @@ in
           "Print+alt" = "exec ${sway-contrib.grimshot}/bin/grimshot save screen";
           "Shift+Print" = "exec ${sway-contrib.grimshot}/bin/grimshot copy area";
           # programs stuff
+          "${modifier}+d" = "exec ${tofi}/bin/tofi-drun --font ${font-path} | xargs swaymsg exec --";
           "${modifier}+f" = "exec ${firefox}/bin/firefox";
           "${modifier}+t" = "exec ${xfce.thunar}/bin/thunar";
           "${modifier}+Shift+f" = "fullscreen";

@@ -17,12 +17,30 @@ let
     with builtins;
     readFile ./dotfiles/fastfetch/config.jsonc
       # strips end-of-line "//" comments from multiline strings
-  my-projector-script-file = builtins.readFile ./assets/projector-toggle.sh;
-  my-projector-script = pkgs.writeShellScriptBin "projector-toggle" my-projector-script-file;
       |> (split "\/\/[^\"\n]*\n")
       |> (filter isString)
       |> (concatStringsSep "")
       |> fromJSON;
+  wrapScript = {name, path, deps}: (
+    let
+      src = builtins.readFile path;
+      bin = (pkgs.writeScriptBin name src)
+        .overrideAttrs(old: {
+          buildCommand = "${old.buildCommand}\n patchShebangs $out";
+        });
+    in
+      pkgs.symlinkJoin rec {
+        inherit name;
+        paths = (lib.singleton bin) ++ deps;
+        buildInputs = lib.singleton pkgs.makeWrapper;
+        postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
+      }
+  );
+  presentation-mode = wrapScript {
+    name = "presentation-mode";
+    path = ./assets/presentation-mode.sh;
+    deps = [ pkgs.jq ];
+  };
   fish-functions =
     with builtins;
     with lib.fileset;
@@ -94,7 +112,7 @@ in
     distrobox
     pstree
 
-    my-projector-script
+    presentation-mode
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

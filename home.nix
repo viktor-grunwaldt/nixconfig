@@ -15,16 +15,14 @@ let
   };
   fastfetchConf =
     with builtins;
-    lib.pipe ./dotfiles/fastfetch/config.jsonc [
-      readFile
+    readFile ./dotfiles/fastfetch/config.jsonc
       # strips end-of-line "//" comments from multiline strings
-      (split "\/\/[^\"\n]*\n")
-      (filter isString)
-      (concatStringsSep "")
-      fromJSON
-    ];
   my-projector-script-file = builtins.readFile ./assets/projector-toggle.sh;
   my-projector-script = pkgs.writeShellScriptBin "projector-toggle" my-projector-script-file;
+      |> (split "\/\/[^\"\n]*\n")
+      |> (filter isString)
+      |> (concatStringsSep "")
+      |> fromJSON;
   fish-functions =
     with builtins;
     with lib.fileset;

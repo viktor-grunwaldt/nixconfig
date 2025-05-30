@@ -134,10 +134,16 @@
   # services.printing.enable = true;
 
   # Enable support for bluetooth.
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
   # Powers up the default Bluetooth controller on boot.
-  # hardware.bluetooth.powerOnBoot = true;
-
+    powerOnBoot = false;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR

@@ -22,6 +22,8 @@
     "pipe-operators"
   ];
   nix.settings.auto-optimise-store = true;
+  # pin nix registry to flake's nixpkgs version (nix shell doesn't have to pull every time)
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nixpkgs.config.allowUnfree = true;
   security.sudo.enable = false;
   security.sudo-rs.enable = true;

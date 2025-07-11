@@ -199,6 +199,7 @@
 
   # laptop brightness controll, see https://nixos.wiki/wiki/Backlight
   programs.light.enable = true;
+  programs.command-not-found.enable = true;
   # imperative warning! I've created keys with `ssh-keygen`
   # programs.ssh = {
   #   startAgent = true;

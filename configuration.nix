@@ -181,9 +181,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (lib.hiPrio uutils-coreutils-noprefix)
-    (lib.hiPrio uutils-findutils)
-    (lib.hiPrio uutils-diffutils)
+    # (lib.hiPrio uutils-coreutils-noprefix)
+    # (lib.hiPrio uutils-findutils)
+    # (lib.hiPrio uutils-diffutils)
     ntfs3g
     polkit_gnome
     man-pages
@@ -200,9 +200,17 @@
   # laptop brightness controll, see https://nixos.wiki/wiki/Backlight
   programs.light.enable = true;
   # imperative warning! I've created keys with `ssh-keygen`
-  programs.ssh = {
-    startAgent = true;
-  };
+  # programs.ssh = {
+  #   startAgent = true;
+  # };
+  # services.openssh = {
+  #   enable = true;
+  #   settings = {
+  #     PasswordAuthentication = false;
+  #     KbdInteractiveAuthentication = false;
+  #     PermitRootLogin = "no";
+  #   };
+  # };
   # Launch fish unless parent is already fish
   programs.bash = {
     interactiveShellInit = ''
@@ -279,11 +287,12 @@
   };
 
   # Sieci komputerowe:
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableKvm = true;
   # virtualisation.virtualbox.host.addNetworkInterface = false;
-  users.extraGroups.vboxusers.members = [ "vi" ];
-  boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
+  # users.extraGroups.vboxusers.members = [ "vi" ];
+  # boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
+
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
   virtualisation.vmVariant = {
@@ -299,7 +308,8 @@
     calib-data-file = ./fprint/calib-data.bin;
   };
 
-  services.tailscale.enable = true;
+  # services.tailscale.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

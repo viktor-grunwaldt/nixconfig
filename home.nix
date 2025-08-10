@@ -458,13 +458,26 @@ in
     mako.enable = true;
     kvantum.enable = true;
     kvantum.apply = true;
-    gtk = {
-      enable = true;
-      icon.enable = true;
-    };
+    gtk.icon.enable = true;
   };
   gtk = {
     enable = true;
+
+    theme = {
+      name = "catppuccin-mocha-mauve-standard";
+      package = pkgs.catppuccin-gtk.override {
+        size = "standard";
+        accents = [ "mauve" ];
+        variant = "mocha";
+      };
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
   };
   qt = {
     enable = true;

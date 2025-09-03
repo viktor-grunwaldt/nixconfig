@@ -38,7 +38,7 @@ pkgs:
         name = "python";
         auto-format = true;
         language-servers = [
-          "pyright"
+          "pyrefly"
           "ruff"
         ];
       }
@@ -96,9 +96,8 @@ pkgs:
     ];
     language-server = {
       pyright = {
-        command = "pyright-langserver";
-        args = [ "--stdio" ];
-        config.python.analysis.typeCheckingMode = "basic";
+        command = "pyrefly";
+        args = [ "lsp" ];
       };
       ruff = {
         command = "ruff";

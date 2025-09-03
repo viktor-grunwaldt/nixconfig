@@ -329,7 +329,7 @@ in
         ff = "firefox";
         py = "python";
         pytohn = "python";
-        rebuild-switch = "sudo nixos-rebuild-ng --flake ~/.config/nixconfig#default --print-build-logs --verbose switch";
+        switch = "sudo nixos-rebuild-ng --flake /home/vi/.config/nixconfig#default --print-build-logs --verbose switch";
       };
       shellAliases = {
         mv = "mv -i";

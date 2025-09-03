@@ -98,7 +98,7 @@ in
     swayimg
     imv
     pwvucontrol
-    overskride
+    bluetuith
 
     tokei
     fd

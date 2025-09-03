@@ -87,6 +87,9 @@ waybarCSS:
         "on-click-right" = "exec pwvucontrol";
         "on-click" = "wpctl set-mute @DEFAULT_SINK@ toggle";
       };
+      "bluetooth" = {
+        "on-click-right" = "exec alacritty -e bluetuith";
+      };
     }
   ];
 }

@@ -93,6 +93,7 @@ in
     syncthing
     firefox
     vesktop
+    slack
     transmission_4-gtk
     thunderbird
     swayimg
@@ -372,7 +373,7 @@ in
       output = {
         DP-1 = {
           bg = "${wallpaper.external} fill";
-          position = "1920,0";
+          position = "-2560,-360";
         };
         eDP-1 = {
           bg = "${wallpaper.default} fill";

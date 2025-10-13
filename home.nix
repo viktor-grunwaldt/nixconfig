@@ -104,7 +104,7 @@ in
     tokei
     fd
     ripgrep
-    python313Full
+    python313
     unzip
     bashmount
     file

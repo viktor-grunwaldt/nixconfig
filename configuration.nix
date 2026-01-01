@@ -85,14 +85,17 @@
       });
     '';
   };
-  security.pam.loginLimits = [
-    {
-      domain = "@users";
-      item = "rtprio";
-      type = "-";
-      value = 1;
-    }
-  ];
+  security.pam = {
+    services.greetd.enableGnomeKeyring = true;
+    loginLimits = [
+      {
+        domain = "@users";
+        item = "rtprio";
+        type = "-";
+        value = 1;
+      }
+    ];
+  };
   systemd = {
     # start gnome authentication agent for thunar
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -138,7 +141,7 @@
   # Enable support for bluetooth.
   hardware.bluetooth = {
     enable = true;
-  # Powers up the default Bluetooth controller on boot.
+    # Powers up the default Bluetooth controller on boot.
     powerOnBoot = false;
     settings = {
       General = {
@@ -252,9 +255,13 @@
   services.greetd = {
     enable = true;
     settings = {
+      initial_session = {
+        command = "systemd-cat -t sway sway";
+        user = "vi";
+      };
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd 'systemd-cat -t sway sway'";
-        user = "vi";
+        user = "greeter";
       };
     };
   };

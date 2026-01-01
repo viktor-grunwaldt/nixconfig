@@ -157,7 +157,8 @@
     pulse.enable = true;
     alsa.enable = true;
   };
-
+  # https://discourse.nixos.org/t/how-to-remove-speech-dispatcher
+  services.speechd.enable = false;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 

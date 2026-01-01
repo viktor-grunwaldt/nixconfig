@@ -93,7 +93,6 @@ in
     syncthing
     firefox
     vesktop
-    slack
     transmission_4-gtk
     thunderbird
     swayimg
@@ -104,7 +103,7 @@ in
     tokei
     fd
     ripgrep
-    python313
+    # python313
     unzip
     bashmount
     file
@@ -113,6 +112,7 @@ in
     distrobox
     pstree
     fzf
+    comma
 
     presentation-mode
     # # It is sometimes useful to fine-tune packages, for example, by applying

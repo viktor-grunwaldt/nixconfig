@@ -296,11 +296,13 @@
   };
 
   # Sieci komputerowe:
-  # virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.libvirtd.enable = true;
   # virtualisation.virtualbox.host.enableKvm = true;
   # virtualisation.virtualbox.host.addNetworkInterface = false;
-  # users.extraGroups.vboxusers.members = [ "vi" ];
-  # boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
+  users.extraGroups.vboxusers.members = [ "vi" ];
+  users.extraGroups.libvirtd.members = [ "vi" ];
+  boot.extraModprobeConfig = "blacklist kvm_intel\nblacklist kvm";
 
   # modify the output of build-vm
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm

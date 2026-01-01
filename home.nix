@@ -429,7 +429,7 @@ in
           "${modifier}+d" = "exec ${tofi}/bin/tofi-drun --font ${font-path} | xargs swaymsg exec --";
           "${modifier}+f" = "exec ${firefox}/bin/firefox";
           "${modifier}+t" = "exec ${xfce.thunar}/bin/thunar";
-          "${modifier}+v" = "exec ${vesktop}/bin/vesktop";
+          "${modifier}+Shift+v" = "exec ${vesktop}/bin/vesktop";
           "${modifier}+Shift+f" = "fullscreen";
           # exit stuff
           "${modifier}+Shift+e" = "exec ${wlogout}/bin/wlogout";

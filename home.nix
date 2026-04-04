@@ -16,26 +16,31 @@ let
   fastfetchConf =
     with builtins;
     readFile ./dotfiles/fastfetch/config.jsonc
-      # strips end-of-line "//" comments from multiline strings
-      |> (split "\/\/[^\"\n]*\n")
-      |> (filter isString)
-      |> (concatStringsSep "")
-      |> fromJSON;
-  wrapScript = {name, path, deps}: (
-    let
-      src = builtins.readFile path;
-      bin = (pkgs.writeScriptBin name src)
-        .overrideAttrs(old: {
+    # strips end-of-line "//" comments from multiline strings
+    |> (split "\/\/[^\"\n]*\n")
+    |> (filter isString)
+    |> (concatStringsSep "")
+    |> fromJSON;
+  wrapScript =
+    {
+      name,
+      path,
+      deps,
+    }:
+    (
+      let
+        src = builtins.readFile path;
+        bin = (pkgs.writeScriptBin name src).overrideAttrs (old: {
           buildCommand = "${old.buildCommand}\n patchShebangs $out";
         });
-    in
+      in
       pkgs.symlinkJoin rec {
         inherit name;
         paths = (lib.singleton bin) ++ deps;
         buildInputs = lib.singleton pkgs.makeWrapper;
         postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
       }
-  );
+    );
   presentation-mode = wrapScript {
     name = "presentation-mode";
     path = ./assets/presentation-mode.sh;
@@ -51,7 +56,7 @@ let
         "fish/functions/${baseNameOf path}".text = readFile path;
       }
     ) { } (toList (fileFilter (file: file.hasExt "fish") ./dotfiles/fish/functions));
-    font-path = "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack/HackNerdFontMono-Regular.ttf";
+  font-path = "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack/HackNerdFontMono-Regular.ttf";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -219,6 +224,7 @@ in
     yazi = {
       enable = true;
       enableFishIntegration = true;
+      shellWrapperName = "yy";
     };
     fastfetch = {
       enable = true;
@@ -258,18 +264,20 @@ in
     };
     git = {
       enable = true;
-      userName = "Viktor Grunwaldt";
-      userEmail = "v.gruenwaldt@protonmail.com";
-      extraConfig = {
-        # Sign all commits using ssh key
-        # for now, gpg is not set up, this will be uncommented once it works
-        # commit.gpgsign = true;
-        # gpg.format = "ssh";
+      settings = {
+        user.name = "Viktor Grunwaldt";
+        user.email = "v.gruenwaldt@protonmail.com";
+        extraConfig = {
+          # Sign all commits using ssh key
+          # for now, gpg is not set up, this will be uncommented once it works
+          # commit.gpgsign = true;
+          # gpg.format = "ssh";
 
-        # user.signingkey = "/home/vi/.ssh/id_ed25519.pub}";
-        merge.conflictstyle = "zdiff3";
-        pull.ff = "only";
-        init.defaultBranch = "master";
+          # user.signingkey = "/home/vi/.ssh/id_ed25519.pub}";
+          merge.conflictstyle = "zdiff3";
+          pull.ff = "only";
+          init.defaultBranch = "master";
+        };
       };
     };
     fish = {
@@ -330,7 +338,7 @@ in
         ff = "firefox";
         py = "python";
         pytohn = "python";
-        switch = "sudo nixos-rebuild-ng --flake /home/vi/.config/nixconfig#default --print-build-logs --verbose switch";
+        switch = "sudo nixos-rebuild --flake /home/vi/.config/nixconfig#default --print-build-logs --verbose switch";
       };
       shellAliases = {
         mv = "mv -i";
@@ -388,12 +396,42 @@ in
       # manually injecting catppuccin config
       # nixfmt: off
       colors = {
-        focused           = {childBorder="$lavender";background= "$base";text= "$text";  indicator="$rosewater"; border="$lavender";};
-        focusedInactive   = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$rosewater"; border="$overlay0";};
-        unfocused         = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$rosewater"; border="$overlay0";};
-        urgent            = {childBorder="$peach";   background= "$base";text= "$peach"; indicator="$overlay0";  border="$peach";};
-        placeholder       = {childBorder="$overlay0";background= "$base";text= "$text";  indicator="$overlay0";  border="$overlay0";};
-        background        = "$base";
+        focused = {
+          childBorder = "$lavender";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$lavender";
+        };
+        focusedInactive = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$overlay0";
+        };
+        unfocused = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$overlay0";
+        };
+        urgent = {
+          childBorder = "$peach";
+          background = "$base";
+          text = "$peach";
+          indicator = "$overlay0";
+          border = "$peach";
+        };
+        placeholder = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$overlay0";
+          border = "$overlay0";
+        };
+        background = "$base";
       };
       # nixfmt: on
       window.titlebar = false;

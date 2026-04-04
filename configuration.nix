@@ -35,7 +35,12 @@
     # grub.efiSupport = true;
     # grub.device = "nodev";
   };
-
+  # Bus 002 Device 003: ID 1058:2621 Western Digital Technologies, Inc. Elements 2621
+  boot.kernelParams = [
+    # Replace "VID:PID" with your actual ID from lsusb
+    # The ":u" tells Linux to ignore UAS for this device
+    "usb-storage.quirks=1058:2621:u"
+  ];
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

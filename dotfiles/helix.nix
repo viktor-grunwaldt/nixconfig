@@ -6,7 +6,7 @@ pkgs:
     nixd
     # nixfmt is in the process of being adopted by the NixOS org
     # see https://github.com/NixOS/nixfmt/issues/153
-    nixfmt-rfc-style
+    nixfmt
   ];
   settings = {
     editor = {

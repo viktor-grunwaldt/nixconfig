@@ -16,16 +16,16 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     t480-fprint-sensor = {
       url = "github:viktor-grunwaldt/t480-fingerprint-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -52,7 +52,7 @@
           }
 
           catppuccin.nixosModules.catppuccin
-          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+          inputs.nix-index-database.nixosModules.default
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.t480-fprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
 

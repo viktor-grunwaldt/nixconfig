@@ -131,8 +131,8 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "disko": "disko",
-        "flake-programs-sqlite": "flake-programs-sqlite",
         "home-manager": "home-manager",
+        "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "t480-fprint-sensor": "t480-fprint-sensor"

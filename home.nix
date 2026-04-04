@@ -416,8 +416,8 @@ in
           "XF86AudioMute" = "exec ${wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioMicMute" = "exec ${wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
           # brightness stuff
-          "XF86MonBrightnessUp" = "exec ${light}/bin/light -T 1.19 ";
-          "XF86MonBrightnessDown" = "exec ${light}/bin/light -T 0.84";
+          # "XF86MonBrightnessUp" = "exec ${light}/bin/light -T 1.19 ";
+          # "XF86MonBrightnessDown" = "exec ${light}/bin/light -T 0.84";
           # other Fn keys
           "XF86Bluetooth" = "exec rfkill toggle bluetooth";
           "XF86Wlan" = "exec rfkill toggle wifi";
@@ -428,7 +428,7 @@ in
           # programs stuff
           "${modifier}+d" = "exec ${tofi}/bin/tofi-drun --font ${font-path} | xargs swaymsg exec --";
           "${modifier}+f" = "exec ${firefox}/bin/firefox";
-          "${modifier}+t" = "exec ${xfce.thunar}/bin/thunar";
+          "${modifier}+t" = "exec ${thunar}/bin/thunar";
           "${modifier}+Shift+v" = "exec ${vesktop}/bin/vesktop";
           "${modifier}+Shift+f" = "fullscreen";
           # exit stuff

@@ -207,8 +207,7 @@
   # programs.mtr.enable = true;
 
   # laptop brightness controll, see https://nixos.wiki/wiki/Backlight
-  programs.light.enable = true;
-  programs.command-not-found.enable = true;
+  # programs.light.enable = true;
   # imperative warning! I've created keys with `ssh-keygen`
   # programs.ssh = {
   #   startAgent = true;
@@ -234,9 +233,9 @@
   programs.thunar = {
     enable = true;
     plugins = with pkgs; [
-      xfce.thunar-archive-plugin
-      xfce.thunar-media-tags-plugin
-      xfce.thunar-volman
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
     ];
   };
   # programs.steam.enable = true;

@@ -170,6 +170,8 @@ in
     # suggests electron apps to use the default (wayland) backend
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+    # "dark mode" for ncurses menus like whiptail (nmtui)
+    NEWT_COLORS="root=,black;window=,black;border=blue,black;title=blue,black;textbox=white,black;button=black,blue;actbutton=white,blue;compactbutton=white,black;listbox=white,black;actlistbox=black,white;sellistbox=black,blue;actsellistbox=black,blue;checkbox=white,black;actcheckbox=black,white";
   };
 
   # Home Manager can also manage your environment variables through

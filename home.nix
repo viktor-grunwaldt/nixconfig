@@ -171,7 +171,7 @@ in
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     # "dark mode" for ncurses menus like whiptail (nmtui)
-    NEWT_COLORS="root=,black;window=,black;border=blue,black;title=blue,black;textbox=white,black;button=black,blue;actbutton=white,blue;compactbutton=white,black;listbox=white,black;actlistbox=black,white;sellistbox=black,blue;actsellistbox=black,blue;checkbox=white,black;actcheckbox=black,white";
+    NEWT_COLORS = "root=,black;window=,black;border=blue,black;title=blue,black;textbox=white,black;button=black,blue;actbutton=white,blue;compactbutton=white,black;listbox=white,black;actlistbox=black,white;sellistbox=black,blue;actsellistbox=black,blue;checkbox=white,black;actcheckbox=black,white";
   };
 
   # Home Manager can also manage your environment variables through
@@ -266,16 +266,11 @@ in
     };
     git = {
       enable = true;
+      signing.format = null;
       settings = {
         user.name = "Viktor Grunwaldt";
         user.email = "v.gruenwaldt@protonmail.com";
         extraConfig = {
-          # Sign all commits using ssh key
-          # for now, gpg is not set up, this will be uncommented once it works
-          # commit.gpgsign = true;
-          # gpg.format = "ssh";
-
-          # user.signingkey = "/home/vi/.ssh/id_ed25519.pub}";
           merge.conflictstyle = "zdiff3";
           pull.ff = "only";
           init.defaultBranch = "master";
@@ -517,8 +512,16 @@ in
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
+
+    gtk4.theme = null;
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
+    };
+
+  };
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
     };
   };
   qt = {

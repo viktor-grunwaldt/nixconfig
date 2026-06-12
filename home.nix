@@ -495,7 +495,7 @@ in
     mako.enable = true;
     kvantum.enable = true;
     kvantum.apply = true;
-    gtk.icon.enable = true;
+    gtk.icon.enable = false;
   };
   gtk = {
     enable = true;
@@ -508,7 +508,13 @@ in
         variant = "mocha";
       };
     };
-
+    iconTheme = {
+      name = "Papirus-Dark"; # Or whichever specific name the theme expects
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha"; # Replace with your flavor
+        accent = "mauve"; # Replace with your accent
+      };
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };

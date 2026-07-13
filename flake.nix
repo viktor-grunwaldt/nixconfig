@@ -28,8 +28,9 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
-
   outputs =
     {
       nixpkgs,
@@ -38,7 +39,26 @@
       disko,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
+      checks.${system}.pre-commit-check = inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          nixfmt.enable = true;
+        };
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        shellHook = ''
+          ${inputs.self.checks.${system}.pre-commit-check.shellHook}
+        '';
+        nativeBuildinputs = [
+          pkgs.nixfmt
+        ];
+      };
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;

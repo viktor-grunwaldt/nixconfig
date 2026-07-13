@@ -44,9 +44,9 @@
           inherit inputs;
         };
         modules = [
-          ./configuration.nix
+          ./t480/configuration.nix
           disko.nixosModules.disko
-          ./disko.nix
+          ./t480/disko.nix
           {
             _module.args.disks = [ "/dev/nvme0n1" ];
           }
@@ -64,7 +64,7 @@
             home-manager.useUserPackages = true;
 
             home-manager.users.vi.imports = [
-              ./home.nix
+              ./t480/home.nix
               catppuccin.homeModules.catppuccin
             ];
           }

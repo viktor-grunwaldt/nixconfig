@@ -51,7 +51,7 @@
             _module.args.disks = [ "/dev/nvme0n1" ];
           }
 
-          catppuccin.nixosModules.catppuccin
+          # catppuccin.nixosModules.catppuccin
           inputs.nix-index-database.nixosModules.default
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.t480-fprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"

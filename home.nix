@@ -479,6 +479,9 @@ in
   */
   # Theme
   catppuccin = {
+    enable = true;
+    autoEnable = false;
+    enableReleaseCheck = true;
     flavor = "mocha";
     cursors = {
       accent = "light";

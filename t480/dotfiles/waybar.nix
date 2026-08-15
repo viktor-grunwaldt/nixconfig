@@ -1,5 +1,4 @@
-waybarCSS:
-{
+waybarCSS: {
   enable = true;
   style = waybarCSS;
   settings = [

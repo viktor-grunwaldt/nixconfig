@@ -1,5 +1,4 @@
-pkgs: inputConf:
-{
+pkgs: inputConf: {
   enable = true;
   scripts = with pkgs; [
     # mpvScripts.builtins.autoload

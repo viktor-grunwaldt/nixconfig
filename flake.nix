@@ -56,7 +56,7 @@
         shellHook = ''
           ${inputs.self.checks.${system}.pre-commit-check.shellHook}
         '';
-        nativeBuildinputs = [
+        nativeBuildInputs = [
           pkgs.nixfmt
         ];
       };

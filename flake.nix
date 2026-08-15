@@ -46,6 +46,7 @@
     {
       checks.${system}.pre-commit-check = inputs.git-hooks.lib.${system}.run {
         src = ./.;
+        package = pkgs.prek;
         hooks = {
           nixfmt.enable = true;
         };

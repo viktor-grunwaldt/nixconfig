@@ -91,5 +91,13 @@
           }
         ];
       };
+      nixosConfigurations.matrix-server = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./matrix-server/configuration.nix
+          inputs.disko.nixosModules.disko
+          ./matrix-server/disko.nix
+          { _module.args.disks = [ "/dev/nvme0n1" ]; }
+        ];
+      };
     };
 }

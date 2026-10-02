@@ -154,6 +154,10 @@
       };
     };
   };
+  hardware.graphics.extraPackages = lib.mkForce [
+    pkgs.intel-media-driver
+    pkgs.vpl-gpu-rt
+  ];
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR

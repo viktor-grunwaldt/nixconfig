@@ -1,4 +1,6 @@
 {
+  config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -6,6 +8,10 @@
 
 let
   username = "vi";
+  catppuccinPackages = (import "${inputs.catppuccin}/default.nix" { inherit pkgs; }).packages;
+  cursorFlavor = config.catppuccin.cursors.flavor;
+  cursorAccent = config.catppuccin.cursors.accent;
+  cursorOutput = "${cursorFlavor}${lib.toSentenceCase cursorAccent}";
   inputConf = builtins.readFile ./dotfiles/mpv/input.conf;
   waybarCSS = ./dotfiles/waybar/style.css;
   zathurarc = builtins.readFile ./dotfiles/zathura/zathurarc;
@@ -478,6 +484,23 @@ in
                     Please see https://github.com/catppuccin/gtk/issues/262
   */
   # Theme
+  # Selecting a derivation output alone still builds all 64 cursor variants.
+  # Restrict the outputs and rasterization to the configured flavor/accent.
+  catppuccin.sources.cursors = catppuccinPackages.cursors.overrideAttrs {
+    outputs = [
+      cursorOutput
+      "out"
+    ];
+
+    buildPhase = ''
+      runHook preBuild
+
+      just build ${lib.escapeShellArg cursorFlavor} ${lib.escapeShellArg cursorAccent}
+
+      runHook postBuild
+    '';
+  };
+
   catppuccin = {
     enable = true;
     autoEnable = false;

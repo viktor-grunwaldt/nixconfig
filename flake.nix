@@ -83,6 +83,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
 
             home-manager.users.vi.imports = [
               ./t480/home.nix

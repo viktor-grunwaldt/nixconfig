@@ -499,7 +499,7 @@ in
       runHook postBuild
     '';
   };
-
+  home.pointerCursor.enable = true;
   catppuccin = {
     enable = true;
     autoEnable = false;

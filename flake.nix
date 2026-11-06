@@ -30,6 +30,10 @@
     };
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -48,7 +52,10 @@
         src = ./.;
         package = pkgs.prek;
         hooks = {
-          nixfmt.enable = true;
+          nixfmt = {
+            enable = true;
+            excludes = ["flake.nix"];
+          };
         };
       };
 
@@ -56,9 +63,7 @@
         shellHook = ''
           ${inputs.self.checks.${system}.pre-commit-check.shellHook}
         '';
-        nativeBuildInputs = [
-          pkgs.nixfmt
-        ];
+        nativeBuildInputs = [ pkgs.nixfmt ];
       };
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -68,9 +73,7 @@
           ./t480/configuration.nix
           disko.nixosModules.disko
           ./t480/disko.nix
-          {
-            _module.args.disks = [ "/dev/nvme0n1" ];
-          }
+          { _module.args.disks = [ "/dev/nvme0n1" ]; }
 
           # catppuccin.nixosModules.catppuccin
           inputs.nix-index-database.nixosModules.default
@@ -84,7 +87,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-
             home-manager.users.vi.imports = [
               ./t480/home.nix
               catppuccin.homeModules.catppuccin
@@ -98,6 +100,25 @@
           inputs.disko.nixosModules.disko
           ./matrix-server/disko.nix
           { _module.args.disks = [ "/dev/nvme0n1" ]; }
+        ];
+      };
+      nixosConfigurations.blackbox = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./blackbox/configuration.nix
+          inputs.disko.nixosModules.disko
+          ./blackbox/disko.nix
+          { _module.args.disks = [ "/dev/nvme0n1" ]; }
+          inputs.niri.nixosModules.niri
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.vi.imports = [ ./blackbox/home.nix ];
+          }
         ];
       };
     };

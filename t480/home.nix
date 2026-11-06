@@ -78,7 +78,6 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
-
   # Allow unfree for vscode ( in flake )
   # Allow unfree from commandline
   # nixpkgs.config = {
@@ -476,6 +475,7 @@ in
         };
     };
   };
+  home.pointerCursor.enable = true;
   /*
     evaluation warning: vi profile: `gtk.catppuccin.enable` and `gtk.catppuccin.gnomeShellTheme` are deprecated and will be removed in a future release.
 
@@ -499,7 +499,6 @@ in
       runHook postBuild
     '';
   };
-  home.pointerCursor.enable = true;
   catppuccin = {
     enable = true;
     autoEnable = false;

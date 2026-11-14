@@ -172,9 +172,8 @@ in
   home.sessionVariables = {
     # EDITOR = "hx";
     NIXOS_OZONE_WL = "1";
-    # suggests electron apps to use the default (wayland) backend
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+    # speech-dispatcher is disabled; keeps Electron wrappers from spawning it
+    NIXOS_SPEECH = "False";
     # "dark mode" for ncurses menus like whiptail (nmtui)
     NEWT_COLORS = "root=,black;window=,black;border=blue,black;title=blue,black;textbox=white,black;button=black,blue;actbutton=white,blue;compactbutton=white,black;listbox=white,black;actlistbox=black,white;sellistbox=black,blue;actsellistbox=black,blue;checkbox=white,black;actcheckbox=black,white";
   };
@@ -357,6 +356,10 @@ in
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    # greetd doesn't load home.sessionVariables, only fish does
+    extraSessionCommands = ''
+      . "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"
+    '';
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";

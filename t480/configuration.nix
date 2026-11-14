@@ -165,6 +165,12 @@
     enable = true;
     pulse.enable = true;
     alsa.enable = true;
+    # crashed PipeWire <= 1.6.9 when XWayland exited; sway has no X11 bell
+    extraConfig.pipewire."99-disable-x11-bell" = {
+      "context.properties" = {
+        "module.x11.bell" = false;
+      };
+    };
   };
   # https://discourse.nixos.org/t/how-to-remove-speech-dispatcher
   services.speechd.enable = false;

@@ -277,7 +277,7 @@ in
         extraConfig = {
           merge.conflictstyle = "zdiff3";
           pull.ff = "only";
-          init.defaultBranch = "master";
+          init.defaultBranch = "main";
         };
       };
     };
@@ -344,6 +344,10 @@ in
       shellAliases = {
         mv = "mv -i";
       };
+    };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
   };
 

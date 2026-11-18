@@ -197,6 +197,9 @@
   programs.steam = {
     enable = true;
   };
+  programs.nix-index.package =
+    inputs.nix-index-database.packages.${pkgs.stdenv.hostPlatform.system}.nix-index-with-small-db;
+
   programs.nix-index-database.comma.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget

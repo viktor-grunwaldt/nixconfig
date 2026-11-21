@@ -132,6 +132,7 @@
       ripgrep
       fzf
     ];
+    initialHashedPassword = "$y$j9T$AKGO/Q.MSASQc5jXZjKQ31$3NEhUjQ.Q/GGohZFSkKwDjdc.Y.ZEAF.q/LypsvAma/";
   };
 
   programs.steam.enable = true;
